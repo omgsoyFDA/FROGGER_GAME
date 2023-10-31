@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1698707326 source:c:\codeblock\hiii\lol\froggerp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<conio.h>
+	<time.h>
+	<stdbool.h>
+
