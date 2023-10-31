@@ -149,9 +149,11 @@ while(i<nivel){
 }
 //TRONCOS/TORTUGAS/NEUFARES
 i=0;
-
+while(i)
 }
 
+void funciondeprubea(){
+}
 
 void Movimiento_Auto(int nivel){
 //MOVIMIENTO
