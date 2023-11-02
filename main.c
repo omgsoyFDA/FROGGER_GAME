@@ -112,19 +112,20 @@ void llenaren_blanco_lleno(int opcion){
     }
 }
 
-void inicializar_objetos(int nivel){
+void inicializar_objetos(int fases){
 //NIVEL = FASES DEPENDIENDO DE LA FASES AUMENTA LOS AUTOS
 
 int i=0;//INDICADOR DE LOS OBJETOS - SIRVE PARA EL WHILE COMO UN CONTADOR
 
 int tope=0; //INTENTAR CONVERTIRLOS EN PILAS(PARA LUEGO)
 
+fases=fases+2;
 //AUTOS
-int Espacio_mapa=90/nivel; // DIVIDO EL MAPA DEPENDIENDO DE LA CANTIDAD DE AUTOS POR FASE (PREDETERMINADAMENTE ES 3)
+int Espacio_mapa=90/fases; // DIVIDO EL MAPA DEPENDIENDO DE LA CANTIDAD DE AUTOS POR FASE (PREDETERMINADAMENTE ES 3)
 
 int posi[2]={1,12}; //POSICION INICIAL EN X DEL PRIMER AUTO
 
-while(i<nivel){
+while(i<fases){
     for(int j=0;j<7;j++){ // HACER LOS AUTOS DE UNA COLUMNA COMPLETA
         if(j%2==0){ //AUTOS LAS FILAS PARES
             gotoxy(posi[0]+1,33-(j*2));printf("%c",220); // POSICION DEL TECHO DEL AUTO
@@ -149,7 +150,29 @@ while(i<nivel){
 }
 //TRONCOS/TORTUGAS/NEUFARES
 i=0;
-while(i)
+Espacio_mapa=90/4;
+int posiA[2]={1,7};
+while(i<4){
+    for(int j=0;j<5;j++){
+        if(j%3==0){ //TORTUGAS
+            gotoxy(posiA[0],15-(j*2));printf("%c%c%c",2,2,2);
+            gotoxy(posiA[0],16-(j*2));printf("%c%c%c",2,2,2);
+        }
+        else if(i<3){//TRONCOS MEDIANOS
+            if(j!=2){
+            gotoxy(posiA[1],15-(j*2));printf("%c%c%c%c",220,220,220,220);
+            gotoxy(posiA[1],16-(j*2));printf("%c%c%c%C",223,223,223,223);
+            }
+            if(i<2){//TRONCO GRANDE
+            gotoxy(posiA[0],11);printf("%c%c%c%c%c%c%c%c",220,220,220,220,220,220,220,220);
+            gotoxy(posiA[0],12);printf("%c%c%c%c%c%c%c%c",223,223,223,223,223,223,223,223);
+            }
+        }
+    }
+    posiA[0]=posiA[0]+Espacio_mapa;
+    posiA[1]=posiA[1]+Espacio_mapa;
+    i++;
+}
 }
 
 void funciondeprubea(){
@@ -168,7 +191,7 @@ void Movimiento_Auto(int nivel){
         gotoxy(Autos[i].posicionX,Autos[i].posicionY);printf("%c%c%c%c%c",254,223,223,223,254); //MOVIMIENTO DEL AUTO
         Mapa[Autos[i].posicionX][Autos[i].posicionY]=1; //SE ASIGNA EN EL MAPA QUE VALE UNO LA POSICION ACTUAL
     }
-    Sleep(50);
+    Sleep(10);
 }
 
 void Movimiento_tronco(){
@@ -186,12 +209,12 @@ void Juego(){
     int gameover=0;
 
     MapDesign();
-    inicializar_objetos(4);
+    inicializar_objetos(2);
     gotoxy(35,36);printf("}%c{",219);
 
     while(gameover!=1){
-        Movimiento_Auto(4);
         MovimientoDeRana(z);
+        Movimiento_Auto(4);
 }
 }
 
